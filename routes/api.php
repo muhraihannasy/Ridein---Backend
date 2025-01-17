@@ -32,7 +32,9 @@ Route::group(
     ],
     function ($router) {
         Route::get('', [BrandCarController::class, 'index']);
+        Route::get('{uuid}', [BrandCarController::class, 'detail']);
         Route::post('', [BrandCarController::class, 'create']);
-        Route::patch('', [BrandCarController::class, 'update']);
+        Route::patch('{uuid}', [BrandCarController::class, 'update']);
+        Route::delete('{uuid}', [BrandCarController::class, 'delete']);
     }
 );

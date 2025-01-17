@@ -20,7 +20,7 @@ class BrandCarRepository implements BrandCarRepositoryInterface
     }
     public function findOne($id)
     {
-        return $this->model->find($id);
+        return $this->model->where('uuid', $id)->get();
     }
     public function create(array $data)
     {
@@ -28,10 +28,10 @@ class BrandCarRepository implements BrandCarRepositoryInterface
     }
     public function update($id, array $data)
     {
-        return $this->model->update($id, $data);
+        return $this->model->where('uuid', $id)->update($data);
     }
     public function delete($id): string
     {
-        return $this->model->where('id', $id)->delete();
+        return $this->model->where('uuid', $id)->delete();
     }
 }

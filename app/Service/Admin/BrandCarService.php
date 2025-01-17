@@ -31,6 +31,6 @@ class BrandCarService
     }
     public function delete($id): string
     {
-        return $this->brandCarRepository->where('id', $id)->delete();
+        return $this->brandCarRepository->delete($id);
     }
 }

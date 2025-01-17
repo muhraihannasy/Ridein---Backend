@@ -26,6 +26,13 @@ class BrandCarController extends Controller
         return ApiResponse::success($brands, 200);
     }
 
+    public function detail(string $id): JsonResponse
+    {
+        $brands = $this->brandCarService->findOne($id);
+
+        return ApiResponse::success($brands, 200);
+    }
+
     public function create(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
@@ -71,6 +78,15 @@ class BrandCarController extends Controller
             'logo' => $request->logo
         ]);
 
+        $brand_car = $this->brandCarService->findOne($id);
+
         return ApiResponse::success($brand_car, 200);
+    }
+
+    public function delete(string $id): JsonResponse
+    {
+        $brands = $this->brandCarService->delete($id);
+
+        return ApiResponse::success([], 200);
     }
 }
