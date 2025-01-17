@@ -1,8 +1,9 @@
 <?php
 
-use App\Models\BrandCar;
-use App\Repositories\Interfaces\UserRepositoryInterface;
+namespace App\Repository;
 
+use App\Models\BrandCar;
+use App\Repository\Interfaces\BrandCarRepositoryInterface;
 
 class BrandCarRepository implements BrandCarRepositoryInterface
 {

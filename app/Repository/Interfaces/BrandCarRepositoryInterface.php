@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Repository\Interfaces;
+
 interface BrandCarRepositoryInterface
 {
     public function findAll();

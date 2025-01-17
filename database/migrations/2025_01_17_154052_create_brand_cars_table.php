@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('brand_cars', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->string('name', 100);
             $table->timestamps();
             $table->softDeletes();

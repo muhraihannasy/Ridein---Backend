@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\Admin\BrandCarController;
-use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\AuthController;
+
+use App\Http\Controllers\Api\Admin\BrandCarController;
 
 
 
@@ -30,5 +32,7 @@ Route::group(
     ],
     function ($router) {
         Route::get('', [BrandCarController::class, 'index']);
+        Route::post('', [BrandCarController::class, 'create']);
+        Route::patch('', [BrandCarController::class, 'update']);
     }
 );
