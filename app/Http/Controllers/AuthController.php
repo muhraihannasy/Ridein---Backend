@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Responses\ApiResponse;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller implements HasMiddleware
 {
@@ -29,28 +32,20 @@ class AuthController extends Controller implements HasMiddleware
         return $this->respondWithToken($token);
     }
 
-    public function register()
+    public function register(RegisterRequest $request)
     {
-        $request = request(['name', 'email', 'password', 'phone']);
-        $credentials = request(['email', 'password']);
+        $payload =  $request->only(['name', 'email', 'password', 'phone']);
+        $credentials = $request->only(['email', 'password']);
 
         $request['password'] = bcrypt($request['password']);
 
-        $user = User::create($request);
-
+        $user = User::create($payload);
         $token = Auth::attempt($credentials);
 
-        return response()->json([
-            'data' => $request
-        ]);
-
-        // $user = User::create([])
-
-        // if (! $token = Auth::attempt($credentials)) {
-        //     return response()->json(['error' => 'Unauthorized'], 401);
-        // }
-
-        // return $this->respondWithToken($token);
+        return ApiResponse::success([
+            'access_token' => $token,
+            'user' => $user
+        ], 200);
     }
 
     public function me()
