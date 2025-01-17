@@ -21,4 +21,9 @@ class Car extends Model
             $model->uuid = \Illuminate\Support\Str::uuid();
         });
     }
+
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 }

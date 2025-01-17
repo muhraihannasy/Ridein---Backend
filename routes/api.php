@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\Api\Admin\BrandCarController;
-
-
+use App\Http\Controllers\Api\Admin\CarsController;
 
 Route::group([
 
@@ -22,6 +21,7 @@ Route::group([
     Route::post('me', [AuthController::class, 'me']);
 });
 
+Route::resource('cars', CarsController::class);
 
 Route::group(
     [
